@@ -1,0 +1,34 @@
+-------------------------------------Pour get_around_pricing_project---------------------------------------------
+
+model_key : modèle de la voiture
+mileage : kilométrage de la voiture
+engine_power : puissance du moteur de la voiture
+fuel : type de carburant utilisé par la voiture
+paint_color : couleur de la peinture de la voiture
+car_type : type de carrosserie de la voiture
+private_parking_available : présence d'un parking privé pour la voiture
+has_gps : présence d'un système GPS dans la voiture
+has_air_conditioning : présence de la climatisation dans la voiture
+automatic_car : voiture automatique ou non
+has_getaround_connect : présence d'un système de connectivité Getaround dans la voiture
+has_speed_regulator : présence d'un régulateur de vitesse dans la voiture
+winter_tires : présence de pneus hiver pour la voiture
+rental_price_per_day : prix de location de la voiture par jour
+
+
+-------------------------------------get_around_delay_analysis---------------------------------------------
+
+
+rental_id : identifiant de la location
+car_id : identifiant de la voiture louée
+checkin_type : type de checkin effectué pour la location
+state : état de la location
+delay_at_checkout_in_minutes : durée de retard au checkout en minutes
+previous_ended_rental_id : identifiant de la location précédente ayant été achevée avant cette location
+time_delta_with_previous_rental_in_minutes : temps écoulé en minutes depuis la fin de la location précédente
+
+
+-------------------------------------------Explain--------------------------------
+Pour le checkin avant location
+    Mobile: contrat de location sur application mobile : chauffeur et propriétaire se rencontrent et signent tous les deux le contrat de location sur le smartphone du propriétaire
+    Connect: le conducteur ne rencontre pas le propriétaire et ouvre la voiture avec son smartphone
