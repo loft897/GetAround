@@ -1,5 +1,23 @@
 # GetAround
 
+lien pour la prediction : https://getaround-jedha-3077421fe27d.herokuapp.com/predict
+
+exemple de donnees json pour une voiture : {
+  "model_key": "Peugeot",
+  "mileage": 0,
+  "engine_power": 250,
+  "fuel": "diesel",
+  "paint_color": "black",
+  "car_type": "convertible",
+  "private_parking_available": True,
+  "has_gps": True,
+  "has_air_conditioning": True,
+  "automatic_car": True,
+  "has_getaround_connect": True,
+  "has_speed_regulator": True,
+  "winter_tires": True
+}
+
 Projet pour valider le block 5 de la certification concepteur et dévéloppeur de données
 
 ![snap](https://lever-client-logos.s3.amazonaws.com/2bd4cdf9-37f2-497f-9096-c2793296a75f-1568844229943.png)
