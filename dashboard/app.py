@@ -1,4 +1,4 @@
-import sys
+# import sys
 import streamlit as st
 from PIL import Image
 import urllib.request
@@ -8,7 +8,7 @@ import numpy as np
 import plotly.express as px
 import matplotlib.pyplot as plt
 
-st.write(sys.executable)
+# st.write(sys.executable)
 
 
 # Config
