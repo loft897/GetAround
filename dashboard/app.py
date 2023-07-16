@@ -50,11 +50,25 @@ fname = "https://full-stack-assets.s3.eu-west-3.amazonaws.com/Deployment/get_aro
 pricing_df = pd.read_csv(fname, index_col=0)
 
 # add checkout feature
-delay_df['checkout'] = pd.cut(delay_df['delay_at_checkout_in_minutes'],
-                              bins=[-np.inf, 0, 15, 30, 60, 120, np.inf],
-                              labels=['Early', 'Late 0-15 mins', 'Late 15-30 mins', 'Late 30-60 mins', 'Late 1-2 hours', 'Late > 2 hours'],
-                              right=False,
-                              include_lowest=True)
+checkout = []
+for x in delay_df['delay_at_checkout_in_minutes']:
+    if x < 0:
+        checkout.append('Early')
+    elif x < 15:
+        checkout.append('Late 0-15 mins')
+    elif x < 30:
+        checkout.append('Late 15-30 mins')
+    elif x < 60:
+        checkout.append('Late 30-60 mins')
+    elif x < 120:
+        checkout.append('Late 1-2 hours')
+    elif x >= 120:
+        checkout.append('Late > 2 hours')
+    else:
+        checkout.append('NA')
+
+# add feature to the original dataset
+delay_df['checkout'] = checkout
 
 st.subheader('Vue sur le Dataset')
 
