@@ -64,7 +64,7 @@ delay_df['checkout'] = pd.cut(delay_df['delay_at_checkout_in_minutes'],
                               right=False,
                               include_lowest=True)
 
-fig0, ax0 = plt.subplots(figsize=(10,6))
+fig0, ax0 = plt.subplots(figsize=(5,3))
 sns.boxenplot(data=delay_df[delay_df['checkout']!='Early'], x='delay_at_checkout_in_minutes',scale='linear', ax=ax0)
 st.pyplot(fig0)
 
