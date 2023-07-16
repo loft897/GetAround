@@ -175,7 +175,7 @@ canceled = (df_delay['state'] == 'canceled').sum()
 median_rental = df_pricing['rental_price_per_day'].median()
 canceled_loss = canceled*median_rental 
 
-st.write(f"En supposant une moyenne de location de 24 heures et en prenant une durée moyenne de location de 24h, les {canceled} annulations ont engrangé {canceled_loss}$ de perte.")
+st.write(f"En supposant une moyenne de location de 24 heures et en prenant une durée moyenne de location de 24h, les {canceled} annulations ont engrangé {canceled_loss} USD  de perte.")
 st.write("En supposant bien sûr que ces annulations sont exclusivement liées aux rétards de précedentes réservations.")
 
 ## Connect Checkin Type
