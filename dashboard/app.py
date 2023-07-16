@@ -1,4 +1,3 @@
-# import sys
 import streamlit as st
 from PIL import Image
 import urllib.request
@@ -6,10 +5,6 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 import plotly.express as px
-import matplotlib.pyplot as plt
-
-# st.write(sys.executable)
-
 
 # Config
 st.set_page_config(
@@ -64,6 +59,9 @@ delay_df['checkout'] = pd.cut(delay_df['delay_at_checkout_in_minutes'],
                               right=False,
                               include_lowest=True)
 
+fig0 = sns.boxenplot(data=delay_df[delay_df['checkout']!='Early'], x='delay_at_checkout_in_minutes',scale='linear')
+st.plotly_chart(fig0, use_container_width=True)
+
 st.subheader('Vue sur le Dataset')
 
 if st.checkbox('Montrer les données traitées'):
@@ -75,15 +73,6 @@ st.markdown(
     """
 )
 st.markdown("---")
-
-fig0, ax0 = plt.subplots(figsize=(10,6))
-sns.boxenplot(data=delay_df[delay_df['checkout']!='Early'], x='delay_at_checkout_in_minutes',scale='linear', ax=ax0)
-st.pyplot(fig0)
-
-st.write("Nous constatons que nous avaons des valeurs erronées ou aberrantes avec comme valeur max = 71084 minutes. Nous allons essayer de traiter ces outliers en les remplaçants par des valeurs manquantes NaN.")
-
-st.markdown("---")
-
 
 
 category_orders = {"checkout": ["Early", "Late 0-15 mins", "Late 15-30 mins",
@@ -104,17 +93,6 @@ st.markdown(
 )
 st.markdown("---")
 
-delayed = []
-for x in delay_df['delay_at_checkout_in_minutes']:
-    if x < delay_df['delay_at_checkout_in_minutes'].quantile(0.01):
-        delayed.append(np.nan)
-    elif x > delay_df['delay_at_checkout_in_minutes'].quantile(0.99):
-        delayed.append(np.nan)     
-    else:
-        delayed.append(x)
-
-delay_df['delays_checkout_min_clean'] = delayed
-
 st.header("Quel type de checkin est le plus concerné par les retards ?")
 fig2 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
                     x='state',
@@ -125,9 +103,6 @@ fig2 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
 st.plotly_chart(fig2, use_container_width=True)
 
 st.markdown("---")
-checkout_clean = delay_df.dropna(subset=['delay_at_checkout_in_minutes'])
-checktype_checkout = checkout_clean.groupby(['checkin_type','checkout']).size().reset_index(name='count')
-checktype_checkout['percentage'] = [i / checktype_checkout['count'].sum() * 100 for i in checktype_checkout['count']]
 
 fig3 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
                     x="checkout",
