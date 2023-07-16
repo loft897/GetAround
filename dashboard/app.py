@@ -129,29 +129,13 @@ checkout_clean = delay_df.dropna(subset=['delay_at_checkout_in_minutes'])
 checktype_checkout = checkout_clean.groupby(['checkin_type','checkout']).size().reset_index(name='count')
 checktype_checkout['percentage'] = [i / checktype_checkout['count'].sum() * 100 for i in checktype_checkout['count']]
 
-# plt.figure(figsize=(10,6))
-# sns.barplot(y=checktype_checkout['percentage'],x=checktype_checkout['checkin_type'], hue=checktype_checkout['checkout'],orient='vertical')
-# plt.show()
-
-
-# fig3, ax0 = plt.subplots(figsize=(10,6))
-# sns.barplot(y=checktype_checkout['percentage'],x=checktype_checkout['checkin_type'], hue=checktype_checkout['checkout'],orient='vertical')
-# st.pyplot(fig3)
-
-# fig3, ax0 = plt.subplots(figsize=(10,6))
-fig3 = sns.barplot(y=checktype_checkout['percentage'], x=checktype_checkout['checkin_type'], hue=checktype_checkout['checkout'], orient='vertical')
-
-st.pyplot(fig3)
-# st.plotly_chart(fig3, use_container_width=True)
-
-
-# fig3 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
-#                     x="checkout",
-#                     color="checkout",
-#                     facet_row="checkin_type",
-#                     color_discrete_sequence=color_discrete_sequence
-#                     )
-# st.plotly_chart(fig3, use_container_width=True)
+fig3 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
+                    x="checkout",
+                    color="checkout",
+                    facet_row="checkin_type",
+                    color_discrete_sequence=color_discrete_sequence
+                    )
+st.plotly_chart(fig3, use_container_width=True)
 
 connect_share = (delay_df['checkin_type'].value_counts()/delay_df['checkin_type'].count()*100)[1]
 mobile_share = (delay_df['checkin_type'].value_counts()/delay_df['checkin_type'].count()*100)[0]
