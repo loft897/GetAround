@@ -138,10 +138,11 @@ checktype_checkout['percentage'] = [i / checktype_checkout['count'].sum() * 100 
 # sns.barplot(y=checktype_checkout['percentage'],x=checktype_checkout['checkin_type'], hue=checktype_checkout['checkout'],orient='vertical')
 # st.pyplot(fig3)
 
-fig3, ax0 = plt.subplots(figsize=(10,6))
-sns.barplot(y=checktype_checkout['percentage'], x=checktype_checkout['checkin_type'], hue=checktype_checkout['checkout'], orient='vertical')
+# fig3, ax0 = plt.subplots(figsize=(10,6))
+fig3 = sns.barplot(y=checktype_checkout['percentage'], x=checktype_checkout['checkin_type'], hue=checktype_checkout['checkout'], orient='vertical')
 
 st.pyplot(fig3)
+# st.plotly_chart(fig3, use_container_width=True)
 
 
 # fig3 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
