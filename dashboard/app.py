@@ -49,18 +49,12 @@ delay_df = pd.read_excel(fname, engine='openpyxl', sheet_name='rentals_data')
 fname = "https://full-stack-assets.s3.eu-west-3.amazonaws.com/Deployment/get_around_pricing_project.csv"
 pricing_df = pd.read_csv(fname, index_col=0)
 
-color_discrete_sequence = ["#008000", "#ffbaba",
-                           "#ff7b7b", "#ff5252", "#ff0000", "#a70000", "Black"]
-
 # add checkout feature
 delay_df['checkout'] = pd.cut(delay_df['delay_at_checkout_in_minutes'],
                               bins=[-np.inf, 0, 15, 30, 60, 120, np.inf],
                               labels=['Early', 'Late 0-15 mins', 'Late 15-30 mins', 'Late 30-60 mins', 'Late 1-2 hours', 'Late > 2 hours'],
                               right=False,
                               include_lowest=True)
-
-fig0 = sns.boxenplot(data=delay_df[delay_df['checkout']!='Early'], x='delay_at_checkout_in_minutes',scale='linear')
-st.plotly_chart(fig0, use_container_width=True)
 
 st.subheader('Vue sur le Dataset')
 
@@ -77,7 +71,8 @@ st.markdown("---")
 
 category_orders = {"checkout": ["Early", "Late 0-15 mins", "Late 15-30 mins",
                                 "Late 30-60 mins", "Late 1-2 hours", "Late > 2 hours", "NA"]}
-
+color_discrete_sequence = ["#008000", "#ffbaba",
+                           "#ff7b7b", "#ff5252", "#ff0000", "#a70000", "Black"]
 
 st.header("Répartition des locations à l'heure ou en retard selon leur statut")
 fig1 = px.histogram(delay_df.sort_values(by="delay_at_checkout_in_minutes"),
