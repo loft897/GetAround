@@ -1,8 +1,12 @@
 # GetAround
 
+lien du dashboard : https://getaround-dashb-galus.streamlit.app/
+
 lien pour la prediction : https://getaround-jedha-3077421fe27d.herokuapp.com/predict
 
-exemple de donnees json pour une voiture : {
+exemple pour une voiture : 
+""" 
+response = requests.post("https://getaround-jedha-3077421fe27d.herokuapp.com/predict", json={
   "model_key": "Peugeot",
   "mileage": 0,
   "engine_power": 250,
@@ -16,7 +20,16 @@ exemple de donnees json pour une voiture : {
   "has_getaround_connect": True,
   "has_speed_regulator": True,
   "winter_tires": True
-}
+})
+
+print(f"Response status code: {response.status_code}")
+
+if response.status_code == 200:
+    print(response.json())
+else:
+    print("Error: Unable to get a JSON response")
+
+"""
 
 Projet pour valider le block 5 de la certification concepteur et dévéloppeur de données
 
