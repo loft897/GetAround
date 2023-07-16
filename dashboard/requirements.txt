@@ -1,8 +1,6 @@
 streamlit
 Pillow
 numpy
-seaborn
 pandas
 plotly
 openpyxl
-matplotlib

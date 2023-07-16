@@ -2,7 +2,7 @@
 
 lien du dashboard : https://getaround-dashb-galus.streamlit.app/
 
-lien pour la prediction : https://getaround-jedha-3077421fe27d.herokuapp.com/predict
+lien pour la prediction : https://getaround-jedha-3077421fe27d.herokuapp.com/docs
 
 exemple pour une voiture : 
 """ 
