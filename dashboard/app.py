@@ -1,3 +1,4 @@
+import sys
 import streamlit as st
 from PIL import Image
 import urllib.request
@@ -5,6 +6,10 @@ import pandas as pd
 import seaborn as sns
 import numpy as np
 import plotly.express as px
+import matplotlib.pyplot as plt
+
+st.write(sys.executable)
+
 
 # Config
 st.set_page_config(
@@ -59,8 +64,9 @@ delay_df['checkout'] = pd.cut(delay_df['delay_at_checkout_in_minutes'],
                               right=False,
                               include_lowest=True)
 
-fig0 = sns.boxenplot(data=delay_df[delay_df['checkout']!='Early'], x='delay_at_checkout_in_minutes',scale='linear')
-st.plotly_chart(fig0, use_container_width=True)
+fig0, ax0 = plt.subplots(figsize=(10,6))
+sns.boxenplot(data=delay_df[delay_df['checkout']!='Early'], x='delay_at_checkout_in_minutes',scale='linear', ax=ax0)
+st.pyplot(fig0)
 
 st.subheader('Vue sur le Dataset')
 
